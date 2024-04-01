@@ -1,4 +1,4 @@
-# Docker CI Template
+# Docker CI Template - Test
 
 This template will automatically build, release and push docker images for you as soon as a new base image is available.
 
