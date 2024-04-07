@@ -4,9 +4,6 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Kopiere die lokale streamlit_app.py Datei in das Arbeitsverzeichnis im Docker-Image
-COPY streamlit_app.py .
-
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
@@ -15,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 #RUN git clone https://github.com/streamlit/streamlit-example.git .
+# Kopiere die lokale streamlit_app.py Datei in das Arbeitsverzeichnis im Docker-Image
+COPY streamlit_app.py .
 
 RUN pip3 install -r requirements.txt
 
