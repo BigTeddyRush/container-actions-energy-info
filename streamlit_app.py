@@ -12,7 +12,7 @@ st.write(
     """
 )
 
-# Get the current credentials
+# Get the current credentials test
 session = get_active_session()
 
 # Use an interactive slider to get user input
