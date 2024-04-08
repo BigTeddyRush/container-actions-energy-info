@@ -4,3 +4,5 @@ json5
 pandas
 streamlit
 plotly
+pyodbc
+azure-functions
