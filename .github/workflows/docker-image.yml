@@ -84,7 +84,7 @@ jobs:
         echo ""
         docker tag "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}" "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
         docker push "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
-        docker push "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
+        # docker push "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
 
   Shared-Manifest:
     if: github.event_name == 'release'
