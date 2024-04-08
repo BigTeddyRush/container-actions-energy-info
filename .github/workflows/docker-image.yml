@@ -87,7 +87,6 @@ jobs:
         docker push "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
     
     - name: Start Docker Container
-      if: github.event_name == 'release'
       env:
         DOCKER_USER: ${{ vars.DOCKER_HUB_USERNAME || github.repository_owner }}
         BUILD_NR: ${{ github.run_number }}
@@ -98,7 +97,7 @@ jobs:
         echo "Starting Docker Container: ${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
         echo "============================================================="
         echo ""
-        docker run -d -p 8501:8501 "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
+        docker run -d -p 8501:8501 "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
 
   Shared-Manifest:
     if: github.event_name == 'release'
