@@ -94,10 +94,10 @@ jobs:
         ARCH=$(echo "${PLATFORM}" | awk -F  "/" '{print $2$3}')
         echo ""
         echo "============================================================="
-        echo "Starting Docker Container: ${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
+        echo "Starting Docker Container: ${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
         echo "============================================================="
         echo ""
-        docker run -d -p 8501:8501 "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
+        docker run -d -p 8501:8501 "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
 
   Shared-Manifest:
     if: github.event_name == 'release'
