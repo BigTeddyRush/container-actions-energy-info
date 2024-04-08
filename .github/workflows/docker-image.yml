@@ -62,19 +62,6 @@ jobs:
           --load \
           -f Dockerfile .
 
-    - name: Start Docker Container
-      env:
-        DOCKER_USER: ${{ vars.DOCKER_HUB_USERNAME || github.repository_owner }}
-        BUILD_NR: ${{ github.run_number }}
-      run: |
-        ARCH=$(echo "${PLATFORM}" | awk -F  "/" '{print $2$3}')
-        echo ""
-        echo "============================================================="
-        echo "Starting Docker Container: ${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
-        echo "============================================================="
-        echo ""
-        docker run -d -p 8501:8501 "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
-
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       if: github.event_name == 'release'
@@ -98,6 +85,20 @@ jobs:
         docker tag "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}" "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
         docker push "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
         docker push "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}"
+    
+    - name: Start Docker Container
+      if: github.event_name == 'release'
+      env:
+        DOCKER_USER: ${{ vars.DOCKER_HUB_USERNAME || github.repository_owner }}
+        BUILD_NR: ${{ github.run_number }}
+      run: |
+        ARCH=$(echo "${PLATFORM}" | awk -F  "/" '{print $2$3}')
+        echo ""
+        echo "============================================================="
+        echo "Starting Docker Container: ${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
+        echo "============================================================="
+        echo ""
+        docker run -d -p 8501:8501 "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}"
 
   Shared-Manifest:
     if: github.event_name == 'release'
