@@ -4,7 +4,7 @@ import plotly.express as px
 import os
 import pyodbc
 
-# create dict
+# Erstelle das Dictionary
 power_consumption_dict = {'unix_seconds' : [], 'name' : [], 'data' : []}
 
 server = 'energycharts.database.windows.net'
