@@ -11,7 +11,7 @@ server = 'energycharts.database.windows.net'
 database = 'EnergyChartsDB'
 driver = '{ODBC Driver 17 for SQL Server}'
 username = 'bigteddyrush'
-password = os.environ['PASSWORD']
+password = 'qepniZ-tyhxus-3pubmu'
 
 # Daten aus Datenbank abrufen
 try:
