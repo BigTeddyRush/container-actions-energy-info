@@ -6,9 +6,6 @@ on:
   release:
     types: [published]
 
-env:
-  PASSWORD: ${{ secrets.PASSWORD_DB }}
-
 jobs:
   Setup:
     runs-on: ubuntu-latest
@@ -34,6 +31,7 @@ jobs:
     env:
       VERSION: ${{ needs.Setup.outputs.version }}
       IMAGE_NAME: ${{ vars.IMAGE_NAME || needs.Setup.outputs.repo_name_lower_case }}
+      PASSWORD_DB: ${{ secrets.PASSWORD_DB }}
     strategy:
       fail-fast: false
       matrix:
@@ -63,6 +61,7 @@ jobs:
           docker buildx build \
             --tag "${DOCKER_USER}/${IMAGE_NAME}:${VERSION}-${ARCH}-${BUILD_NR}" \
             --platform ${PLATFORM} \
+            --build-arg PASSWORD_DB=${PASSWORD_DB} \
             --load \
             -f Dockerfile .
 
