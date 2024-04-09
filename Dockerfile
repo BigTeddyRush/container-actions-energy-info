@@ -1,5 +1,7 @@
 # app/Dockerfile
 
+ARG PASSWORD_DB
+
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -10,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     git \
     && rm -rf /var/lib/apt/lists/*
+
+ENV PASSWORD=$PASSWORD_DB
 
 # RUN git clone https://github.com/streamlit/streamlit-example.git .
 # Kopiere die lokale streamlit_app.py Datei in das Arbeitsverzeichnis im Docker-Image
