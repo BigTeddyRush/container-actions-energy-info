@@ -15,8 +15,6 @@ RUN apt-get update && apt-get install -y \
     unixodbc-dev \
     && rm -rf /var/lib/apt/lists/*
 
-ENV PASSWORD=$PASSWORD_DB
-
 # RUN git clone https://github.com/streamlit/streamlit-example.git .
 # Kopiere die lokale streamlit_app.py Datei in das Arbeitsverzeichnis im Docker-Image
 COPY streamlit_app.py .
