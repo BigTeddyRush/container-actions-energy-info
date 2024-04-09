@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     software-properties-common \
     git \
+    unixodbc \
+    unixodbc-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PASSWORD=$PASSWORD_DB
